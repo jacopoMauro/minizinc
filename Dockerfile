@@ -4,7 +4,8 @@ MAINTAINER Jacopo Mauro
 RUN apt-get update &&\
 	apt-get -y install \
 		git \
-		wget && \
+		wget \
+		libgl1 && \
 	rm -rf /var/lib/apt/lists/* && \
 	mkdir /tool && \
 	cd /tool && \
@@ -13,4 +14,6 @@ RUN apt-get update &&\
 	mv /tool/MiniZincIDE-2.2.1-bundle-linux /tool/MiniZincIDE && \
 	rm -rf MiniZincIDE-2.2.1-bundle-linux-x86_64.tgz
 	
-ENV PATH "$PATH:/tool/MiniZincIDE"
+ENV PATH "$PATH:/tool/MiniZincIDE/bin"
+ENV LD_LIBRARY_PATH "$LD_LIBRARY_PATH:/tool/MiniZincIDE/lib"
+
